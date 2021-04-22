@@ -2,17 +2,69 @@ package gad.binarysearch;
 
 import gad.binarysearch.Interval.NonEmptyInterval;
 
+import java.util.Arrays;
+
 public final class BinSea {
 
     private BinSea() {
     }
 
-    public static int search(int[] sortedData, int value, Result result) {
-        return 0;
+    public static int search(int[] sortedData, int value, Result result) {//A resposta é um index
+        int index;
+        int length = sortedData.length;
+        int[] copy;
+        int middleIndex = sortedData[length/2 - 1];
+        int[] secondCopy = sortedData;
+
+        while (true){
+            if(middleIndex == value){
+                index = length/2;
+                return index;
+            } else {
+                if(middleIndex > value){
+                copy = new int[length/2 - 1];
+                for (int i = 0; i < copy.length; i++) {
+                    copy[i] = sortedData[i];
+                }
+                sortedData = copy;
+                middleIndex = sortedData[sortedData.length/2];
+
+            } else if(middleIndex < value){
+                copy = new int[length/2 ];
+                for (int i = length/2 ; i < length; i++) {
+                    copy[i - (length/2) ] = sortedData[i];
+                }
+                sortedData = copy;
+                middleIndex = sortedData[sortedData.length/2 - 1];
+            }
+            length = sortedData.length;
+            if(sortedData.length == 1){
+                for (int i = 0; i < secondCopy.length; i++) {
+                    if(sortedData[0] == secondCopy[i]){
+                        return i;
+                    }
+                }
+            }
+
+        }
+        }
+
     }
 
     public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-        return 0;
+        int searchResult = search(sortedData, value, result);
+
+        try{
+            if(lowerBound){
+                return searchResult-1;
+            } else{
+                return searchResult+1;
+
+
+            }
+        } catch (Exception e){
+            return -1;
+        }
     }
 
     public static Interval search(int[] sortedData, Interval valueRange, Result resultLower, Result resultHigher) {
