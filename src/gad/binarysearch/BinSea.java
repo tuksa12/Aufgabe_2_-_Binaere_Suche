@@ -16,7 +16,25 @@ public final class BinSea {
         int middleIndex = sortedData[length/2 - 1];
         int[] secondCopy = sortedData;
 
+        //System.out.println("Suche nach " + value +":");
         while (true){
+            if(length%2 == 0){
+                for (int i = 0; i < secondCopy.length; i++) {
+                    if(secondCopy[i] == sortedData[length/2-1]){
+                        System.out.println("added step to index " + (i));
+                        break;
+                    }
+                }
+                //System.out.println("added step to index " + (length/2-1));
+            } else{
+                for (int i = 0; i < secondCopy.length; i++) {
+                    if(secondCopy[i] == sortedData[length/2]){
+                        System.out.println("added step to index " + (i));
+                        break;
+                    }
+                }
+                //System.out.println("added step to index " + (length/2));
+            }
             if(middleIndex == value){
                 index = length/2;
                 return index;
@@ -26,6 +44,22 @@ public final class BinSea {
                 for (int i = 0; i < copy.length; i++) {
                     copy[i] = sortedData[i];
                 }
+                int firstNumber = 0;
+                int lastNumber = 0;
+                    for (int i = 0; i < secondCopy.length; i++) {
+                        if(copy[0] == secondCopy[i]){
+                            firstNumber = i;
+                            break;
+                        }
+                    }
+                    for (int i = secondCopy.length-1; i >= 0; i--) {
+                        if(copy[copy.length-1] == secondCopy[i]){
+                            lastNumber = i;
+                            break;
+                        }
+                    }
+                    //System.out.println("Gesuchter Wert ist kleiner -> Suchbereich von Index " + firstNumber + " bis " + lastNumber);
+
                 sortedData = copy;
                 middleIndex = sortedData[sortedData.length/2];
 
