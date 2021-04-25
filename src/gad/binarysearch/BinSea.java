@@ -19,6 +19,9 @@ public final class BinSea {
         //System.out.println("Suche nach " + value +":");
         while (true){
             if(length%2 == 0){
+                if(middleIndex == value || sortedData[0] == value || sortedData[sortedData.length-1] == value){
+                    return 0;
+                }
                 for (int i = 0; i < secondCopy.length; i++) {
                     if(secondCopy[i] == sortedData[length/2-1]){
                         System.out.println("added step to index " + (i));
@@ -40,7 +43,11 @@ public final class BinSea {
                 return index;
             } else {
                 if(middleIndex > value){
-                copy = new int[length/2 - 1];
+                    if(length%2 == 0){
+                        copy = new int[length/2 - 1];
+                    } else{
+                        copy = new int[length/2];
+                    }
                 for (int i = 0; i < copy.length; i++) {
                     copy[i] = sortedData[i];
                 }
@@ -69,7 +76,11 @@ public final class BinSea {
                     copy[i - (length/2) ] = sortedData[i];
                 }
                 sortedData = copy;
-                middleIndex = sortedData[sortedData.length/2 - 1];
+                    if(sortedData.length%2 == 0){
+                        middleIndex = sortedData[sortedData.length/2 - 1];
+                    } else{
+                        middleIndex = sortedData[sortedData.length/2];
+                    }
             }
             length = sortedData.length;
             if(sortedData.length == 1){
@@ -108,13 +119,13 @@ public final class BinSea {
     public static void main(String[] args) {
         int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
 
-        System.out.println(search(array, 7, new StudentResult()));
-        System.out.println(search(array, 100, new StudentResult()));
-
-        System.out.println(search(array, 7, false, new StudentResult()));
-        System.out.println(search(array, 100, true, new StudentResult()));
-
-        System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
-        System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
+        System.out.println(search(array, 2, new StudentResult()));
+//        System.out.println(search(array, 100, new StudentResult()));
+//
+//        System.out.println(search(array, 7, false, new StudentResult()));
+//        System.out.println(search(array, 100, true, new StudentResult()));
+//
+//        System.out.println(search(array, new NonEmptyInterval(7, 1500), new StudentResult(), new StudentResult()));
+//        System.out.println(search(array, new NonEmptyInterval(9002, 10000), new StudentResult(), new StudentResult()));
     }
 }
