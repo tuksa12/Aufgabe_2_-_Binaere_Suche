@@ -135,25 +135,25 @@ public final class BinSea {
 //
 //    }
 //
-//    public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
-//        int searchResult = search(sortedData, value, result);
-//
-//        try{
-//            if(lowerBound){
-//                return searchResult-1;
-//            } else{
-//                return searchResult+1;
-//
-//
-//            }
-//        } catch (Exception e){
-//            return -1;
-//        }
-//    }
-//
-//    public static Interval search(int[] sortedData, Interval valueRange, Result resultLower, Result resultHigher) {
-//        return null;
-//    }
+    public static int search(int[] sortedData, int value, boolean lowerBound, Result result) {
+        int searchResult = search(sortedData, value, result);
+
+        try{
+            if(lowerBound){
+                return searchResult-1;
+            } else{
+                return searchResult+1;
+
+
+            }
+        } catch (Exception e){
+            return -1;
+        }
+    }
+
+    public static Interval search(int[] sortedData, Interval valueRange, Result resultLower, Result resultHigher) {
+        return null;
+    }
 
     public static void main(String[] args) {
         int[] array = new int[] { 2, 7, 7, 42, 69, 1337, 2000, 9001 };
